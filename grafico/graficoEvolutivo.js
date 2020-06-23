@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 
     // TODO adecuar el url
-    var url = "https://api.covid19api.com/dayone/country/south-africa/status/confirmed/live";
+    var url = "https://api.covid19api.com/total/dayone/country/"+slug+"/status/confirmed";
 
 
     // set the dimensions and margins of the graph
@@ -51,7 +51,7 @@ $(document).ready(function () {
         data.forEach(function (d) {
             d.date = parseTime(formatDate(d.Date));
             d.cases = d.Cases;
-            d.country = d.Country;
+            d.country= d.Country;
         });
 
         // Scale the range of the data
