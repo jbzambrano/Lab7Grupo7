@@ -2,10 +2,18 @@
 $(document).ready(function () {
 
     // TODO
+    // Metodo de obtención de parámetros
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
 
+    const slug = urlParams.get('slug');
+
+    const countryCode = urlParams.get('countryCode');
 
     // TODO adecuar el url
-    var url = "https://api.covid19api.com/total/dayone/country/"+slug+"/status/confirmed";
+    var url = "https://api.covid19api.com/total/dayone/country/"+ slug +"/status/confirmed";
+
+    var urlBandera = "https://www.countryflags.io/" + countryCode + "/flat/64.png"
 
 
     // set the dimensions and margins of the graph
@@ -44,6 +52,8 @@ $(document).ready(function () {
         //const name = urlParams.get('name');
         //var nombrePais = name;
 
+
+
         if (error) throw error;
 
         // format the data
@@ -52,6 +62,8 @@ $(document).ready(function () {
             d.date = parseTime(formatDate(d.Date));
             d.cases = d.Cases;
             d.country= d.Country;
+            $("#titulo").value(d.country);
+            $("#banderita").src(urlBandera);
         });
 
         // Scale the range of the data
