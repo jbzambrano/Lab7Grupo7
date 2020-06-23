@@ -78,6 +78,9 @@ $(document).ready(function () {
 
 
     //// cosnulta bandera
+    var url = "https://www.countryflags.io/" + countryCode + "/flat/64.png";
+    $("#banderita").src(url);
+
     $.ajax({
         method:"get",
         url: nombreUsuario,
@@ -87,12 +90,11 @@ $(document).ready(function () {
         }
 
     }).done(function (dataSum){
-
-        $("#bandera-div").html(dataSum);
+        console.log("este ajax no sirve para nada");
 
     }).fail(function (error){
 
-        console.log(error);
+        console.log("este ajax no sirve para nada");
     });
 
 
