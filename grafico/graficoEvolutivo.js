@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 
     // TODO adecuar el url
-    var url = "";
+    var url = "https://api.covid19api.com/dayone/country/south-africa/status/confirmed/live";
 
 
     // set the dimensions and margins of the graph
@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     // parse the date / time
     //TODO Revisar este Formato
-    var parseTime = d3.timeParse("%d-%m-%Y");
+    var parseTime = d3.timeParse("%B %d");
     // var parseTime = d3.timeParse("%d-%b-%y");
 
     // set the ranges
@@ -39,6 +39,11 @@ $(document).ready(function () {
 
     // Get the data
     d3.json(url, function (error, data) {
+
+        //const urlParams = new URLSearchParams(window.location.search);
+        //const name = urlParams.get('name');
+        //var nombrePais = name;
+
         if (error) throw error;
 
         // format the data
@@ -46,6 +51,7 @@ $(document).ready(function () {
         data.forEach(function (d) {
             d.date = parseTime(formatDate(d.Date));
             d.cases = d.Cases;
+            d.country = d.Country;
         });
 
         // Scale the range of the data
@@ -71,4 +77,13 @@ $(document).ready(function () {
 
 function formatDate(date) {
     // TODO adecuar la función de formateo de fecha
+
+    return (d3.timeSecond(date) < date ? d3.timeFormat(".%L")
+        : d3.timeMinute(date) < date ? d3.timeFormat(":%S")
+            : d3.timeHour(date) < date ? d3.timeFormat("%I:%M")
+                : d3.timeDay(date) < date ? d3.timeFormat("%I %p")
+                    : d3.timeMonth(date) < date ? (d3.timeWeek(date) < date ? d3.timeFormat("%a %d") : d3.timeFormat("%b %d"))
+                        : d3.timeYear(date) < date ? d3.timeFormat("%B")
+                            : d3.timeFormat("%Y"))(date);
+
 }
