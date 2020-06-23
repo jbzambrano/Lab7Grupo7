@@ -22,6 +22,8 @@ $(document).ready(function () {
 
 
                 $.each(listaPaises, function (i, pais) {
+
+
                     bodyTable += "<tr>";
                     bodyTable += "<td>" + (i + 1) + "</td>";
                     bodyTable += "<td>" + pais.Country + "</td>";
@@ -52,7 +54,15 @@ $(document).ready(function () {
 
 // Función para hacer el sort de un array
 function compare(a, b) {
-    // TODO
+    const ConfirmadosTotalesA = a.TotalConfirmed;
+    const ConfirmadosTotalesB = b.TotalConfirmed;
+    let comparison = 0;
+    if (ConfirmadosTotalesA > ConfirmadosTotalesB) {
+        comparison = 1;
+    } else if (bandA < bandB) {
+        comparison = -1;
+    }
+    return comparison;
 }
 // Función para devolver un formato de fecha
 function formatDate(date) {
