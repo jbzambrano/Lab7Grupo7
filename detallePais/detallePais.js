@@ -90,11 +90,11 @@ $(document).ready(function () {
         }
 
     }).done(function (dataSum){
-        console.log("este ajax no sirve para nada");
+        console.log("no realizamos consulta ajax para obtener la imagen");
 
     }).fail(function (error){
 
-        console.log("este ajax no sirve para nada");
+        console.log("no realizamos consulta ajax para obtener la imagen");
     });
 
 
